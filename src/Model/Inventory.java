@@ -13,38 +13,22 @@ public class Inventory {
     public void addProduct(Product newProduct){
         //TODO Add Functionality
     }
-
-    public Part lookupPart(int partID){
-        /*
-        TODO Add Functionality
-         - By Part ID
-        */
+    // TODO Add these functions back in
+    /*public Part lookupPart(int partID){
         return new Part();
     }
-
     public Part lookupPart (String partName){
-        /*
-        TODO Add Functionality
-         - By part name
-         */
+
         return new Part();
     }
 
     public Product lookupProduct(int productID){
-        /*
-        TODO Add Functionality
-         - By Product ID
-        */
         return new Product();
     }
 
     public Product lookupProduct(String productName){
-        /*
-        TODO Add Functionality
-         - By product name
-         */
         return new Product();
-    }
+    }*/
 
     public void updatePart(int index, Part selectedPart){
         // TODO Add Functionality

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="View.SampleController">
+      fx:controller="View.MainScreenController">
    <Button alignment="CENTER" layoutX="77.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#clickButton"
            text="Click Me Baby"/>
 </Pane>

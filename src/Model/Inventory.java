@@ -1,24 +1,24 @@
 package Model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Inventory {
-    private ObservableList<Part> allParts;
-    private ObservableList<Product> allProducts;
+    private ObservableList<Part> allParts = FXCollections.observableArrayList();
+    private ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public void addPart(Part newPart){
-        //TODO Add Functionality
+        allParts.add(newPart);
     }
 
     public void addProduct(Product newProduct){
-        //TODO Add Functionality
+        allProducts.add(newProduct);
     }
     // TODO Add these functions back in
     /*public Part lookupPart(int partID){
         return new Part();
     }
     public Part lookupPart (String partName){
-
         return new Part();
     }
 
@@ -48,18 +48,12 @@ public class Inventory {
         return true;
     }
 
-    public void getAllParts(){
-        /* TODO Add Functionality
-            - Change to return type ObservableList<Part>
-            - Return ObservableList<Part>
-         */
+    public ObservableList<Part> getAllParts(){
+        return allParts;
     }
 
-    public void getAllProducts(){
-        /* TODO Add Functionality
-            - Change to return type ObservableList<Product>
-            - Return ObservableList<Product>
-         */
+    public ObservableList<Product> getAllProducts(){
+        return allProducts;
     }
 
 }

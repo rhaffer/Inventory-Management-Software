@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.AddProductScreenController">
+   <children>
+      <VBox layoutX="20.0" layoutY="42.0" prefHeight="321.0" prefWidth="246.0" style="-fx-border-color: black; -fx-border-radius: 20;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="42.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="244.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="ID" />
+                  <TextField layoutX="71.0" layoutY="13.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="Name" />
+                  <TextField layoutX="71.0" layoutY="13.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="18.0" text="Inventory" />
+                  <TextField layoutX="71.0" layoutY="13.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="19.0" text="Price" />
+                  <TextField layoutX="71.0" layoutY="14.0" />
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="19.0" text="Min" />
+                  <Label layoutX="144.0" layoutY="19.0" text="Max" />
+                  <TextField layoutX="70.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
+                  <TextField layoutX="181.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <Label layoutX="20.0" layoutY="8.0" text="Add Product" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="276.0" layoutY="40.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
+        <columns>
+          <TableColumn maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
+          <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
+        </columns>
+      </TableView>
+      <TableView layoutX="276.0" layoutY="220.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
+         <columns>
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
+            <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
+            <TableColumn maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
+         </columns>
+      </TableView>
+      <ButtonBar layoutX="409.0" layoutY="361.0" prefHeight="40.0" prefWidth="152.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Save" />
+            <Button layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
+        </buttons>
+      </ButtonBar>
+      <TextField layoutX="418.0" layoutY="7.0" AnchorPane.bottomAnchor="367.0" />
+      <Button layoutX="276.0" layoutY="187.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="524.0" layoutY="187.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="354.0" layoutY="7.0" mnemonicParsing="false" text="Search" />
+   </children>
+</AnchorPane>

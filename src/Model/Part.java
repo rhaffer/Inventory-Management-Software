@@ -17,9 +17,7 @@ abstract class Part {
         max = newMax;
     }
 
-    public void setId(int newID){
-        id = newID;
-    }
+    public void setId(int newID){ id = newID; }
 
     public void setName(String newName){
         name = newName;

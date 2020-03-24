@@ -10,37 +10,33 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddPartScreenController implements Initializable {
+public class ModifyPartScreenController implements Initializable {
 
     @FXML
-    private TextField addPartVaryingTextField;
+    public TextField modifyPartVaryingTextField;
     @FXML
-    private Label addPartVaryingLabel;
+    public Label modifyPartVaryingLabel;
     @FXML
-    private RadioButton AddPartOutSourced;
+    public RadioButton modifyPartOutSourced;
     @FXML
-    ToggleGroup ModifyPartType;
-    @FXML
-    RadioButton addPartInHouse;
+    private RadioButton modifyPartInHouse;
 
     @FXML
-    public void processRadiobuttons(){
-        if (addPartInHouse.isSelected()){
-            addPartVaryingLabel.setText("Machine ID");
-            addPartVaryingTextField.setText("#Machine ID");
+    public void processRadioButton() {
+        if (modifyPartInHouse.isSelected()){
+            modifyPartVaryingLabel.setText("Machine ID");
+            modifyPartVaryingTextField.setText("#Machine ID");
         }else{
-            addPartVaryingLabel.setText("Company Name");
-            addPartVaryingTextField.setText(("#Company Name"));
+            modifyPartVaryingLabel.setText("Company Name");
+            modifyPartVaryingTextField.setText("#Company Name");
         }
     }
-
     @FXML
     public void cancelButton(ActionEvent actionEvent) throws IOException {
         Parent main_screen = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
@@ -52,7 +48,9 @@ public class AddPartScreenController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+
 }

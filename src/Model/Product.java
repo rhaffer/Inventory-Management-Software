@@ -44,20 +44,14 @@ public class Product {
         this.max = newMax;
     }
 
-    public void addAssociatedPart(Part newPart){
-        // TODO Add Functionality
-    }
+    public void addAssociatedPart(Part newPart){ associatedParts.add(newPart); }
 
     public boolean deleteAssociatedPart(Part selectedPart){
         // TODO Add functionality
         return false;
     }
 
-    // TODO Add this in
-    /*
-    public ObservableList<Part> getAllAssociatedParts(){
+    public ObservableList<Part> getAllAssociatedParts(){ return associatedParts; }
 
-    }
-     */
 
 }

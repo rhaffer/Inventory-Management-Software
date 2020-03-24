@@ -48,9 +48,7 @@ public class Inventory {
         return true;
     }
 
-    public ObservableList<Part> getAllParts(){
-        return allParts;
-    }
+    public ObservableList<Part> getAllParts(){ return allParts; }
 
     public ObservableList<Product> getAllProducts(){
         return allProducts;

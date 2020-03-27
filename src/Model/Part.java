@@ -1,34 +1,38 @@
 package Model;
 
-abstract class Part {
-    private int id;
-    private String name;
-    private double price;
-    private int stock;
+public abstract class Part {
+    private static int count = 0;
+    private int partID;
+    private String partName;
+    private double partPrice;
+    private int partStock;
     private int min;
     private int max;
 
-    public Part(int newID, String newName, double newPrice, int newStock, int newMin, int newMax){
-        id = newID;
-        name = newName;
-        price = newPrice;
-        stock = newStock;
-        min = newMin;
-        max = newMax;
+
+    public Part(String newName, double newPrice, int newStock, int newMin, int newMax){
+        setID();
+        setPartName(newName);
+        setPartPrice(newPrice);
+        setPartStock(newStock);
+        setMin(newMin);
+        setMax(newMax);
     }
 
-    public void setId(int newID){ id = newID; }
-
-    public void setName(String newName){
-        name = newName;
+    public void setID(){
+        partID = count++;
     }
 
-    public void setPrice(double newPrice){
-        price = newPrice;
+    public void setPartName(String newName){
+        partName = newName;
     }
 
-    public void setStock(int newStock){
-        stock = newStock;
+    public void setPartPrice(double newPrice){
+        partPrice = newPrice;
+    }
+
+    public void setPartStock(int newStock){
+        partStock = newStock;
     }
 
     public void setMin(int newMin){
@@ -39,20 +43,20 @@ abstract class Part {
         max = newMax;
     }
 
-    public int getId(){
-        return this.id;
+    public int getPartID(){
+        return this.partID;
     }
 
-    public String getName(){
-        return this.name;
+    public String getPartName(){
+        return this.partName;
     }
 
-    public double getPrice(){
-        return this.price;
+    public double getPartPrice(){
+        return this.partPrice;
     }
 
-    public int getStock(){
-        return this.stock;
+    public int getPartStock(){
+        return this.partStock;
     }
 
     public int getMin(){

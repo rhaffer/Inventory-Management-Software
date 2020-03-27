@@ -14,34 +14,41 @@ public class Inventory {
     public void addProduct(Product newProduct){
         allProducts.add(newProduct);
     }
-    // TODO Add these functions back in
-    /*public Part lookupPart(int partID){
-        return new Part();
-    }
+
     public Part lookupPart (String partName){
-        return new Part();
+        Part result = null;
+        for (Part allPart : allParts) {
+            if (allPart.getPartName().toLowerCase().equals(partName.toLowerCase())) {
+                result = allPart;
+            }
+        }
+        return result;
     }
-
-    public Product lookupProduct(int productID){
-        return new Product();
-    }
-
+    /*
     public Product lookupProduct(String productName){
         return new Product();
-    }*/
+    }
+    */
 
     public void updatePart(int index, Part selectedPart){
-        // TODO Add Functionality
+        allParts.set(index, selectedPart);
     }
 
     public void updateProduct(int index, Product selectedProduct){
-        // TODO Add Functionality
+        allProducts.set(index, selectedProduct);
     }
 
     public boolean deletePart(Part selectedPart){
-        // TODO Add Functionality
-        return true;
+        boolean deleted = false;
+        for (int x = 0; x < allParts.size(); x++){
+            if (allParts.get(x).getPartID() == selectedPart.getPartID()){
+                allParts.remove(selectedPart);
+                deleted = true;
+            }
+        }
+        return deleted;
     }
+
 
     public boolean deleteProduct(Product selectedProduct){
         // TODO Add Functionality

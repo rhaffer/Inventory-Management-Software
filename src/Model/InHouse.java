@@ -2,8 +2,8 @@ package Model;
 
 public class InHouse extends Part{
     private int machineId;
-    public InHouse(int newID, String newName, double newPrice, int newStock, int newMin, int newMax, int newMachineID){
-        super(newID, newName, newPrice, newStock, newMin, newMax);
+    public InHouse(String newName, double newPrice, int newStock, int newMin, int newMax, int newMachineID){
+        super(newName, newPrice, newStock, newMin, newMax);
         this.machineId = newMachineID;
     }
 

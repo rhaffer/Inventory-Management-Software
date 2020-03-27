@@ -4,45 +4,58 @@ import javafx.collections.ObservableList;
 
 public class Product {
     private ObservableList<Part> associatedParts;
-    private int id;
-    private String name;
-    private double price;
-    private int stock;
+    private static int productCount = 0;
+    private int productID;
+    private String productName;
+    private double productPrice;
+    private int productStock;
     private int min;
     private int max;
 
-    public Product(int newId, String newName, double newPrice, int newStock, int newMin, int newMax){
-        this.id = newId;
-        this.name = newName;
-        this.price = newPrice;
-        this.stock = newStock;
-        this.min = newMin;
-        this.max = newMax;
+    public Product(String newName, double newPrice, int newStock, int newMin, int newMax){
+        setProductID();
+        setProductName(newName);
+        setProductPrice(newPrice);
+        setProductStock(newStock);
+        setMin(newMin);
+        setMax(newMax);
     }
 
-    public void setId(int newID){
-        this.id = newID;
+    public void setProductID(){
+        productID = productCount++;
     }
 
-    public void setName(String newName){
-        this.name = newName;
+    public void setProductName(String newName){
+        productName = newName;
     }
 
-    public void setPrice(double newPrice){
-        this.price = newPrice;
+    public void setProductPrice(double newPrice){
+        productPrice = newPrice;
     }
 
-    public void setStock(int newStock){
-        this.stock = newStock;
+    public void setProductStock(int newStock){
+        productStock = newStock;
     }
 
     public void setMin(int newMin){
-        this.min = newMin;
+        min = newMin;
     }
 
     public void setMax(int newMax){
-        this.max = newMax;
+        max = newMax;
     }
+
+    public int getProductID(){return this.productID;}
+
+    public String getProductName(){return this.productName;}
+
+    public double getProductPrice(){return this.productPrice;}
+
+    public int getProductStock(){return this.productStock;}
+
+    public int getMin(){return this.min;}
+
+    public int getMax(){return this.max;}
 
     public void addAssociatedPart(Part newPart){ associatedParts.add(newPart); }
 

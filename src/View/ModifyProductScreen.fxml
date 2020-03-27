@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.ModifyProductScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox layoutX="20.0" layoutY="42.0" prefHeight="321.0" prefWidth="246.0" style="-fx-border-color: black; -fx-border-radius: 20;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="42.0">
             <children>

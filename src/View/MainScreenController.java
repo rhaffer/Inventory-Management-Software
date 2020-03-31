@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
     Inventory inv;
+
     @FXML
     private Button mainSearchPartButton;
 
@@ -151,7 +153,7 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    void openAddPartScreen(ActionEvent event) throws IOException {
+    void openAddPartScreen(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/AddPartScreen.fxml"));
         loader.setController(new AddPartScreenController(inv));
@@ -160,6 +162,26 @@ public class MainScreenController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void openModifyPartScreen(MouseEvent event) throws IOException{
+        Part selectedPart = mainPartTableView.getSelectionModel().getSelectedItem();
+        if (selectedPart == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part.");
+            alert.setHeaderText("Error choosing part!");
+            alert.showAndWait();
+        }else {
+            int partIndex = partInventory.indexOf(selectedPart);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/ModifyPartScreen.fxml"));
+            loader.setController(new ModifyPartScreenController(inv, partIndex));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML

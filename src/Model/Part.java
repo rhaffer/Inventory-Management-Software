@@ -9,6 +9,7 @@ public abstract class Part {
     private int min;
     private int max;
 
+    public Part() {}
 
     public Part(String newName, double newPrice, int newStock, int newMin, int newMax){
         setID();
@@ -21,6 +22,10 @@ public abstract class Part {
 
     public void setID(){
         partID = count++;
+    }
+
+    public void setID(int new_id){
+        partID = new_id;
     }
 
     public void setPartName(String newName){

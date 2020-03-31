@@ -3,6 +3,8 @@ package Model;
 public class OutSourced extends Part{
     private String companyName;
 
+    public OutSourced(){}
+
     public OutSourced(String newName, double newPrice, int newStock, int newMin, int newMax, String newCompanyName){
         super(newName, newPrice, newStock, newMin, newMax);
         companyName = newCompanyName;

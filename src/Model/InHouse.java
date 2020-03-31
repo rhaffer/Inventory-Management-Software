@@ -6,7 +6,9 @@ public class InHouse extends Part{
         super(newName, newPrice, newStock, newMin, newMax);
         this.machineId = newMachineID;
     }
-
+    public InHouse(){
+        super();
+    };
     public void setMachineId(int newMachineID){
         this.machineId = newMachineID;
     }

@@ -24,11 +24,18 @@ public class Inventory {
         }
         return result;
     }
-    /*
+
+
     public Product lookupProduct(String productName){
-        return new Product();
+        Product result = null;
+        for (Product allProduct: allProducts){
+            if (allProduct.getProductName().toLowerCase().equals(productName.toLowerCase())){
+                result = allProduct;
+            }
+        }
+        return result;
     }
-    */
+
 
     public void updatePart(int index, Part selectedPart){
         allParts.set(index, selectedPart);
@@ -51,8 +58,14 @@ public class Inventory {
 
 
     public boolean deleteProduct(Product selectedProduct){
-        // TODO Add Functionality
-        return true;
+        boolean deleted = false;
+        for (int x = 0; x < allProducts.size(); x++){
+            if (allProducts.get(x).getProductID() == selectedProduct.getProductID()){
+                allProducts.remove(selectedProduct);
+                deleted = true;
+            }
+        }
+        return deleted;
     }
 
     public ObservableList<Part> getAllParts(){ return allParts; }

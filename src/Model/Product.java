@@ -60,8 +60,14 @@ public class Product {
     public void addAssociatedPart(Part newPart){ associatedParts.add(newPart); }
 
     public boolean deleteAssociatedPart(Part selectedPart){
-        // TODO Add functionality
-        return false;
+        boolean deleted = false;
+        for (int x = 0; x < associatedParts.size(); x++){
+            if (associatedParts.get(x).getPartID() == selectedPart.getPartID()){
+                associatedParts.remove(selectedPart);
+                deleted = true;
+            }
+        }
+        return deleted;
     }
 
     public ObservableList<Part> getAllAssociatedParts(){ return associatedParts; }

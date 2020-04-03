@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane layoutX="20.0" layoutY="100.0" prefHeight="320.0" prefWidth="500.0" style="-fx-border-color: black; -fx-border-radius: 20;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="40.0">
       <Label layoutX="14.0" layoutY="14.0" text="Parts">
          <font>
@@ -34,8 +34,8 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="mainSearchProductButton" layoutX="202.0" layoutY="10.0" mnemonicParsing="false" text="Search" />
-      <TextField layoutX="265.0" layoutY="10.0" prefHeight="27.0" prefWidth="177.0" />
+      <Button fx:id="mainSearchProductButton" layoutX="202.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#mainSearchProduct" text="Search" />
+      <TextField fx:id="mainSearchProductTextField" layoutX="265.0" layoutY="10.0" prefHeight="27.0" prefWidth="177.0" />
       <TableView fx:id="mainProductTableView" layoutX="14.0" layoutY="51.0" prefHeight="214.0" prefWidth="430.0">
          <columns>
             <TableColumn fx:id="productIDColumn" prefWidth="75.0" text="Part ID" />
@@ -46,9 +46,9 @@
       </TableView>
       <ButtonBar layoutX="189.0" layoutY="271.0" prefHeight="40.0" prefWidth="256.0">
          <buttons>
-            <Button fx:id="mainAddProductButton" mnemonicParsing="false" text="Add" />
-            <Button fx:id="mainModifyProductButton" layoutX="175.0" layoutY="17.0" mnemonicParsing="false" text="Modify" />
-            <Button fx:id="mainDeleteProductButton" layoutX="95.0" layoutY="17.0" mnemonicParsing="false" text="Delete" />
+            <Button fx:id="mainAddProductButton" mnemonicParsing="false" onMouseClicked="#openAddProductScreen" text="Add" />
+            <Button fx:id="mainModifyProductButton" layoutX="175.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#openModifyProductScreen" text="Modify" />
+            <Button fx:id="mainDeleteProductButton" layoutX="95.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#mainProductDeleteButton" text="Delete" />
          </buttons>
       </ButtonBar>
    </AnchorPane>

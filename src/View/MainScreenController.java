@@ -33,6 +33,12 @@ public class MainScreenController implements Initializable {
     private TextField mainSearchPartTextField;
 
     @FXML
+    private Button getMainSearchProductButton;
+
+    @FXML
+    private TextField mainSearchProductTextField;
+
+    @FXML
     private TableView<Part> mainPartTableView;
 
     @FXML
@@ -165,6 +171,18 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
+    void openAddProductScreen(MouseEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/AddProductScreen.fxml"));
+        loader.setController(new AddProductScreenController(inv));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
     void openModifyPartScreen(MouseEvent event) throws IOException{
         Part selectedPart = mainPartTableView.getSelectionModel().getSelectedItem();
         if (selectedPart == null){
@@ -176,6 +194,26 @@ public class MainScreenController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/View/ModifyPartScreen.fxml"));
             loader.setController(new ModifyPartScreenController(inv, partIndex));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    @FXML
+    void openModifyProductScreen(MouseEvent event) throws IOException{
+        Product selectedProduct = mainProductTableView.getSelectionModel().getSelectedItem();
+        if(selectedProduct == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product.");
+            alert.setHeaderText("Error choosing Product!");
+            alert.showAndWait();
+        }else{
+            int productIndex = productInventory.indexOf(selectedProduct);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/View/ModifyProductScreen.fxml"));
+            loader.setController(new ModifyProductScreenController(inv, productIndex));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -209,6 +247,29 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
+    void mainProductDeleteButton(){
+        Product selectedProduct = mainProductTableView.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + selectedProduct.getProductName() + " ?", ButtonType.YES, ButtonType.CANCEL);
+        alert.setHeaderText("Confirm Deletion");
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.YES) {
+            if (inv.deleteProduct(selectedProduct)) {
+                Alert newAlert = new Alert(Alert.AlertType.INFORMATION, selectedProduct.getProductName() + " deleted successfully.");
+                newAlert.setHeaderText("Delete Successful!");
+                newAlert.showAndWait();
+            } else {
+                Alert newAlert = new Alert(Alert.AlertType.INFORMATION, selectedProduct.getProductName() + " not deleted successfully.");
+                newAlert.setHeaderText("Delete Unsuccessful!");
+                newAlert.showAndWait();
+            }
+        } else {
+            alert.close();
+        }
+        productInventory.setAll(inv.getAllProducts());
+        mainProductTableView.setItems(productInventory);
+    }
+
+    @FXML
     void mainSearchPart() {
         ObservableList<Part> results = FXCollections.observableArrayList();
         String searchPart = mainSearchPartTextField.getText().toLowerCase();
@@ -224,6 +285,26 @@ public class MainScreenController implements Initializable {
             }else {
                 results.add(resultPart);
                 mainPartTableView.setItems(results);
+            }
+        }
+    }
+
+    @FXML
+    void mainSearchProduct(){
+        ObservableList<Product> results = FXCollections.observableArrayList();
+        String searchProduct = mainSearchProductTextField.getText().toLowerCase();
+        if(searchProduct.equals("")){
+            mainProductTableView.setItems(productInventory);
+            mainPartTableView.refresh();
+        }else{
+            Product resultProduct = inv.lookupProduct(searchProduct);
+            if (resultProduct == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR, searchProduct + " is not found.");
+                alert.setHeaderText("Item not found!");
+                alert.showAndWait();
+            }else{
+                results.add(resultProduct);
+                mainProductTableView.setItems(results);
             }
         }
     }

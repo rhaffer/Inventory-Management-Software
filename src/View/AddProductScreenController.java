@@ -2,6 +2,7 @@ package View;
 
 import Model.Inventory;
 import Model.Part;
+import Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -138,7 +139,19 @@ public class AddProductScreenController implements Initializable {
 
     @FXML
     public void addProductSaveButton(MouseEvent event) throws IOException{
-
+        Product newProduct;
+        String productName = addProductName.getText();
+        int productInventory = new Integer(addProductInventory.getText());
+        double productPrice = new Double(addProductPrice.getText());
+        int productMin = new Integer(addProductMin.getText());
+        int productMax = new Integer(addProductMax.getText());
+        newProduct = new Product(productName, productPrice, productInventory, productMin, productMax);
+        newProduct.setAssociatedParts(associatedParts);
+        inv.addProduct(newProduct);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, newProduct.getProductName() + " saved successfully");
+        alert.setHeaderText("Saved Successfully");
+        alert.setTitle("Save Successful");
+        alert.showAndWait();
     }
 
     @FXML
@@ -149,8 +162,14 @@ public class AddProductScreenController implements Initializable {
             alert.setHeaderText("Error choosing Product!");
             alert.showAndWait();
         }else{
-            associatedParts.add(selectedPart);
-            associatedPartsTableView.refresh();
+            if (associatedParts.contains(selectedPart)){
+                Alert alert = new Alert(Alert.AlertType.ERROR, selectedPart.getPartName() + " is already an associated part.");
+                alert.setHeaderText("Error Adding Part");
+                alert.showAndWait();
+            }else{
+                associatedParts.add(selectedPart);
+                associatedPartsTableView.refresh();
+            }
         }
     }
 

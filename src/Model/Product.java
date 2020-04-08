@@ -1,9 +1,10 @@
 package Model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Product {
-    private ObservableList<Part> associatedParts;
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
     private static int productCount = 0;
     private int productID;
     private String productName;
@@ -25,6 +26,8 @@ public class Product {
         productID = productCount++;
     }
 
+    public void setProductID(int id) {productID = id;}
+
     public void setProductName(String newName){
         productName = newName;
     }
@@ -44,6 +47,8 @@ public class Product {
     public void setMax(int newMax){
         max = newMax;
     }
+
+    public void setAssociatedParts(ObservableList<Part> newPartList){ associatedParts = newPartList; }
 
     public int getProductID(){return this.productID;}
 

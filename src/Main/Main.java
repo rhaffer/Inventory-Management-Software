@@ -42,6 +42,12 @@ public class Main extends Application {
         inv.addPart(b3);
         Product c1 = new Product("Bench", 113.4, 5, 2, 10);
         Product c2 = new Product("Entertainment Center", 75.99, 10, 2, 10);
+        c1.addAssociatedPart(b1);
+        c1.addAssociatedPart(b2);
+        c1.addAssociatedPart(b3);
+        c2.addAssociatedPart(a1);
+        c2.addAssociatedPart(a2);
+        c2.addAssociatedPart(a3);
         inv.addProduct(c1);
         inv.addProduct(c2);
     }

@@ -10,33 +10,33 @@
                 <Pane prefHeight="200.0" prefWidth="244.0">
                     <children>
                         <Label layoutX="14.0" layoutY="18.0" text="ID" />
-                        <TextField layoutX="71.0" layoutY="13.0" />
+                        <TextField fx:id="modifyProductID" disable="true" layoutX="71.0" layoutY="13.0" promptText="Auto Generated" />
                     </children>
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
                         <Label layoutX="14.0" layoutY="18.0" text="Name" />
-                        <TextField layoutX="71.0" layoutY="13.0" />
+                        <TextField fx:id="modifyProductName" layoutX="71.0" layoutY="13.0" />
                     </children>
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
                         <Label layoutX="14.0" layoutY="18.0" text="Inventory" />
-                        <TextField layoutX="71.0" layoutY="13.0" />
+                        <TextField fx:id="modifyProductInventory" layoutX="71.0" layoutY="13.0" />
                     </children>
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
                         <Label layoutX="14.0" layoutY="19.0" text="Price" />
-                        <TextField layoutX="71.0" layoutY="14.0" />
+                        <TextField fx:id="modifyProductPrice" layoutX="71.0" layoutY="14.0" />
                     </children>
                 </Pane>
                 <Pane prefHeight="200.0" prefWidth="200.0">
                     <children>
                         <Label layoutX="14.0" layoutY="19.0" text="Min" />
                         <Label layoutX="144.0" layoutY="19.0" text="Max" />
-                        <TextField layoutX="70.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
-                        <TextField layoutX="181.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
+                        <TextField fx:id="modifyProductMin" layoutX="70.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
+                        <TextField fx:id="modifyProductMax" layoutX="181.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
                     </children>
                 </Pane>
             </children>
@@ -46,31 +46,31 @@
                 <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <TableView layoutX="276.0" layoutY="40.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
+        <TableView fx:id="modifyProductAllParts" layoutX="276.0" layoutY="40.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
             <columns>
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
-                <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
+                <TableColumn fx:id="allPartsIDColumn" maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
+                <TableColumn fx:id="allPartsNameColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
+                <TableColumn fx:id="allPartsInventoryColumn" maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
+                <TableColumn fx:id="allPartsPriceColumn" maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
             </columns>
         </TableView>
-        <TableView layoutX="276.0" layoutY="220.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
+        <TableView fx:id="modifyProductAssociatedParts" layoutX="276.0" layoutY="220.0" prefHeight="141.0" prefWidth="303.0" AnchorPane.rightAnchor="21.0">
             <columns>
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
-                <TableColumn editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
-                <TableColumn maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
+                <TableColumn fx:id="associatedPartsIDColumn" maxWidth="1.7976931348623157E308" prefWidth="47.0" text="Part ID" />
+                <TableColumn fx:id="associatedPartsNameColumn" editable="false" maxWidth="1.7976931348623157E308" prefWidth="67.0" text="Part Name" />
+                <TableColumn fx:id="associatedPartsInventoryColumn" maxWidth="1.7976931348623157E308" prefWidth="97.0" text="Inventory Level" />
+                <TableColumn fx:id="associatedPartsPriceColumn" maxWidth="1.7976931348623157E308" prefWidth="89.0" text="Price Per Unit" />
             </columns>
         </TableView>
         <ButtonBar layoutX="409.0" layoutY="361.0" prefHeight="40.0" prefWidth="152.0">
             <buttons>
-                <Button mnemonicParsing="false" text="Save" />
+                <Button mnemonicParsing="false" onMouseClicked="#modifyProductSaveButton" text="Save" />
                 <Button layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#cancelButton" text="Cancel" />
             </buttons>
         </ButtonBar>
-        <TextField layoutX="418.0" layoutY="7.0" AnchorPane.bottomAnchor="367.0" />
-        <Button layoutX="276.0" layoutY="187.0" mnemonicParsing="false" text="Add" />
-        <Button layoutX="524.0" layoutY="187.0" mnemonicParsing="false" text="Delete" />
-        <Button layoutX="354.0" layoutY="7.0" mnemonicParsing="false" text="Search" />
+        <TextField fx:id="modifyProductSearch" layoutX="418.0" layoutY="7.0" AnchorPane.bottomAnchor="367.0" />
+        <Button layoutX="276.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#modifyProductAddButton" text="Add" />
+        <Button layoutX="524.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#modifyProductDeleteButton" text="Delete" />
+        <Button layoutX="354.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#modifyProductSearchButton" text="Search" />
     </children>
 </AnchorPane>

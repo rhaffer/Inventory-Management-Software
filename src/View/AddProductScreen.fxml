@@ -10,33 +10,33 @@
             <Pane prefHeight="200.0" prefWidth="244.0">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="ID" />
-                  <TextField fx:id="addProductID" layoutX="71.0" layoutY="13.0" />
+                  <TextField fx:id="addProductID" disable="true" editable="false" layoutX="71.0" layoutY="13.0" promptText="Auto Generated" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="Name" />
-                  <TextField fx:id="addProductName" layoutX="71.0" layoutY="13.0" />
+                  <TextField fx:id="addProductName" layoutX="71.0" layoutY="13.0" promptText="#Name" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="18.0" text="Inventory" />
-                  <TextField fx:id="addProductInventory" layoutX="71.0" layoutY="13.0" />
+                  <TextField fx:id="addProductInventory" layoutX="71.0" layoutY="13.0" promptText="#Inventory Level" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="19.0" text="Price" />
-                  <TextField fx:id="addProductPrice" layoutX="71.0" layoutY="14.0" />
+                  <TextField fx:id="addProductPrice" layoutX="71.0" layoutY="14.0" promptText="#Price" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <Label layoutX="14.0" layoutY="19.0" text="Min" />
                   <Label layoutX="144.0" layoutY="19.0" text="Max" />
-                  <TextField fx:id="addProductMin" layoutX="70.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
-                  <TextField fx:id="addProductMax" layoutX="181.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" />
+                  <TextField fx:id="addProductMin" layoutX="70.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" promptText="#Min" />
+                  <TextField fx:id="addProductMax" layoutX="181.0" layoutY="14.0" prefHeight="27.0" prefWidth="51.0" promptText="#Max" />
                </children>
             </Pane>
          </children>
@@ -68,7 +68,7 @@
             <Button layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#cancelButton" text="Cancel" />
         </buttons>
       </ButtonBar>
-      <TextField fx:id="addProductSearch" layoutX="418.0" layoutY="7.0" AnchorPane.bottomAnchor="367.0" />
+      <TextField fx:id="addProductSearch" layoutX="418.0" layoutY="7.0" promptText="#By Part Name" AnchorPane.bottomAnchor="367.0" />
       <Button fx:id="addProductAddButton" layoutX="276.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#addProductAddButton" text="Add" />
       <Button layoutX="524.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#addProductDeleteButton" text="Delete" />
       <Button fx:id="addProductSearchBar" layoutX="354.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#addProductSearchButton" text="Search" />

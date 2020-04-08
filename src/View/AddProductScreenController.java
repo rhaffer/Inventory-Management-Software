@@ -139,19 +139,55 @@ public class AddProductScreenController implements Initializable {
 
     @FXML
     public void addProductSaveButton(MouseEvent event) throws IOException{
-        Product newProduct;
-        String productName = addProductName.getText();
-        int productInventory = new Integer(addProductInventory.getText());
-        double productPrice = new Double(addProductPrice.getText());
-        int productMin = new Integer(addProductMin.getText());
-        int productMax = new Integer(addProductMax.getText());
-        newProduct = new Product(productName, productPrice, productInventory, productMin, productMax);
-        newProduct.setAssociatedParts(associatedParts);
-        inv.addProduct(newProduct);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, newProduct.getProductName() + " saved successfully");
-        alert.setHeaderText("Saved Successfully");
-        alert.setTitle("Save Successful");
+        Product newProduct = null;
+        int totalCost = 0;
+        for (Part part: associatedParts){
+            totalCost += part.getPartPrice();
+        }
+
+        try {
+            String productName = addProductName.getText();
+            int productInventory = new Integer(addProductInventory.getText());
+            double productPrice = new Double(addProductPrice.getText());
+            if (productPrice < totalCost){
+                throw new Exception();
+            }
+            int productMin = new Integer(addProductMin.getText());
+            int productMax = new Integer(addProductMax.getText());
+            if (productMin > productMax){
+                throw new Exception();
+            }
+            if (productMin > productInventory || productMax < productInventory){
+                throw new Exception();
+            }
+            newProduct = new Product(productName, productPrice, productInventory, productMin, productMax);
+            newProduct.setAssociatedParts(associatedParts);
+        }catch (Exception e){
+            Alert nullAlert = new Alert(Alert.AlertType.ERROR, "Please validate all fields");
+            nullAlert.setHeaderText("Error in form");
+            nullAlert.showAndWait();
+        }
+
+        assert newProduct != null;
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Save " + newProduct.getProductName() + "?", ButtonType.YES, ButtonType.CANCEL);
+        alert.setHeaderText("Save Confirmation");
         alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES){
+            if (newProduct.getAllAssociatedParts().size() == 0) {
+                Alert partAlert = new Alert(Alert.AlertType.ERROR, "Products must have at least one part.");
+                partAlert.setHeaderText("Error Saving Product");
+                partAlert.showAndWait();
+            }else{
+                inv.addProduct(newProduct);
+                Alert saveConfirm = new Alert(Alert.AlertType.INFORMATION, newProduct.getProductName() + " saved successfully");
+                saveConfirm.setHeaderText("Saved Successfully");
+                saveConfirm.setTitle("Save Successful");
+                saveConfirm.showAndWait();
+            }
+        }else{
+            alert.close();
+        }
     }
 
     @FXML
@@ -181,8 +217,17 @@ public class AddProductScreenController implements Initializable {
             alert.setHeaderText("Error choosing Product!");
             alert.showAndWait();
         }else{
-            associatedParts.remove(selectedPart);
-            associatedPartsTableView.refresh();
+            Alert newAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete " + selectedPart.getPartName() + "?", ButtonType.YES, ButtonType.CANCEL);
+            newAlert.setHeaderText("Confirm Delete");
+            newAlert.showAndWait();
+
+            if (newAlert.getResult() == ButtonType.YES) {
+                associatedParts.remove(selectedPart);
+                associatedPartsTableView.refresh();
+            }else{
+                newAlert.close();
+            }
+
         }
     }
 

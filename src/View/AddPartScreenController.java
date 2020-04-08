@@ -74,25 +74,40 @@ public class AddPartScreenController implements Initializable {
 
     @FXML
     public void saveButton(MouseEvent event) throws IOException{
-        Part newPart;
-        String newPartName = addPartNameTextField.getText();
-        double newPartPrice = new Double(addPartPriceTextField.getText());
-        int newPartInventory = new Integer(addPartInventoryTextField.getText());
-        int newPartMin = new Integer(addPartMinTextField.getText());
-        int newPartMax = new Integer(addPartMaxTextField.getText());
-
-        if (addPartVaryingLabel.getText().equals("Machine ID")){
-            newPart = new InHouse(newPartName, newPartPrice, newPartInventory, newPartMin, newPartMax,
-                    new Integer(addPartVaryingTextField.getText()));
-        }else{
-            newPart = new OutSourced(newPartName, newPartPrice, newPartInventory, newPartMin, newPartMax,
-                    addPartVaryingTextField.getText());
+        Part newPart = null;
+        try {
+            String newPartName = addPartNameTextField.getText();
+            double newPartPrice = new Double(addPartPriceTextField.getText());
+            int newPartInventory = new Integer(addPartInventoryTextField.getText());
+            int newPartMin = new Integer(addPartMinTextField.getText());
+            int newPartMax = new Integer(addPartMaxTextField.getText());
+            if (addPartVaryingLabel.getText().equals("Machine ID")){
+                newPart = new InHouse(newPartName, newPartPrice, newPartInventory, newPartMin, newPartMax,
+                        new Integer(addPartVaryingTextField.getText()));
+            }else{
+                newPart = new OutSourced(newPartName, newPartPrice, newPartInventory, newPartMin, newPartMax,
+                        addPartVaryingTextField.getText());
+            }
+        }catch (Exception e){
+            Alert valueAlert = new Alert(Alert.AlertType.ERROR, "Please fill out all fields.");
+            valueAlert.setHeaderText("Value Error");
+            valueAlert.showAndWait();
         }
-        inv.addPart(newPart);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, newPart.getPartName() + " saved successfully.");
-        alert.setHeaderText("Saved Successfully!");
-        alert.setTitle("Save Successful");
-        alert.show();
+
+        assert newPart != null;
+        Alert saveAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to save " + newPart.getPartName() + "?", ButtonType.YES, ButtonType.CANCEL);
+        saveAlert.setHeaderText("Save Confirmation");
+        saveAlert.showAndWait();
+
+        if (saveAlert.getResult() == ButtonType.YES){
+            inv.addPart(newPart);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, newPart.getPartName() + " saved successfully.");
+            alert.setHeaderText("Saved Successfully!");
+            alert.setTitle("Save Successful");
+            alert.show();
+        }else{
+            saveAlert.close();
+        }
     }
 
     @Override

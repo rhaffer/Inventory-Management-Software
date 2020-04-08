@@ -132,36 +132,64 @@ public class ModifyProductScreenController implements Initializable {
             alert.setHeaderText("Error choosing Product!");
             alert.showAndWait();
         }else{
-            associatedParts.remove(selectedPart);
-            modifyProductAssociatedParts.refresh();
-        }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete " + selectedPart.getPartName() + "?", ButtonType.YES, ButtonType.CANCEL);
+            alert.setHeaderText("Confirm deletion");
+            alert.showAndWait();
 
+            if (alert.getResult() == ButtonType.YES) {
+                associatedParts.remove(selectedPart);
+                modifyProductAssociatedParts.refresh();
+            }else{
+                alert.close();
+            }
+        }
     }
 
     @FXML
-    public void modifyProductSaveButton(){
+    public void modifyProductSaveButton() throws Exception {
         Product product = inv.getAllProducts().get(index);
         int cur_id = product.getProductID();
+        int totalCost = 0;
+        for (Part part: associatedParts){
+            totalCost += part.getPartPrice();
+        }
 
-        product.setAssociatedParts(associatedParts);
-        product.setProductID(cur_id);
-        product.setProductName(modifyProductName.getText());
-        product.setProductPrice(Double.parseDouble(modifyProductPrice.getText()));
-        product.setProductStock(Integer.parseInt(modifyProductInventory.getText()));
-        product.setMin(Integer.parseInt(modifyProductMin.getText()));
-        product.setMax(Integer.parseInt(modifyProductMax.getText()));
+        try {
+            product.setAssociatedParts(associatedParts);
+            product.setProductID(cur_id);
+            product.setProductName(modifyProductName.getText());
+            product.setProductPrice(Double.parseDouble(modifyProductPrice.getText()));
+            product.setProductStock(Integer.parseInt(modifyProductInventory.getText()));
+            product.setMin(Integer.parseInt(modifyProductMin.getText()));
+            product.setMax(Integer.parseInt(modifyProductMax.getText()));
+            if (product.getAllAssociatedParts().size() == 0){
+                throw new Exception();
+            }
+            if (product.getProductPrice() < totalCost){
+                throw new Exception();
+            }
+            if (product.getProductStock() < product.getMin() || product.getProductStock() > product.getMax()){
+                throw new Exception();
+            }
+            if (product.getMin() > product.getMax()){
+                throw new Exception();
+            }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Save " + product.getProductName() + "?", ButtonType.YES, ButtonType.CANCEL);
+            alert.setHeaderText("Save Confirmation");
+            alert.showAndWait();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Save " + product.getProductName() + "?", ButtonType.YES, ButtonType.CANCEL);
-        alert.setHeaderText("Save Confirmation");
-        alert.showAndWait();
-
-        if (alert.getResult() == ButtonType.YES){
-            inv.updateProduct(index, product);
-            Alert new_alert = new Alert(Alert.AlertType.INFORMATION, "Saved Successfully!");
-            new_alert.setHeaderText("Saved Successfully!");
-            new_alert.showAndWait();
-        }else{
-            alert.close();
+            if (alert.getResult() == ButtonType.YES){
+                inv.updateProduct(index, product);
+                Alert new_alert = new Alert(Alert.AlertType.INFORMATION, "Saved Successfully!");
+                new_alert.setHeaderText("Saved Successfully!");
+                new_alert.showAndWait();
+            }else{
+                alert.close();
+            }
+        }catch (Exception e){
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR, "Please validate all fields.");
+            errorAlert.setHeaderText("Value Error");
+            errorAlert.show();
         }
     }
 
